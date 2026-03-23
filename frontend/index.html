@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AgriShop | Professional Farming Partner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">Agri<span>Shop</span></div>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Search for Seeds, Equipment, or Crops...">
+        <button>Search</button>
+    </div>
+
+    <div class="user-nav">
+        <!-- ✅ FIXED: href changed from "#" to "login.html" -->
+        <a href="login.html"><i class="fas fa-user"></i> Login / Register</a>
+        <a href="#"><i class="fas fa-shopping-cart"></i> Cart</a>
+    </div>
+</header>
+
+<nav class="category-bar">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Govt Schemes</a></li>
+        <li><a href="#">Market Prices</a></li>
+        <li><a href="#">Farmer Services</a></li>
+    </ul>
+</nav>
+
+<main class="main-layout">
+
+    <aside class="sidebar">
+        <h3 class="sidebar-title">MENU CATEGORIES</h3>
+
+        <div class="category-list">
+
+            <div class="menu-item">
+                <button class="menu-btn" onclick="toggleMenu(this)">
+                    Crop-Based Products <i class="fas fa-plus"></i>
+                </button>
+                <div class="submenu-content">
+                    <a href="#">Cereals & Grains</a>
+                    <a href="#">Pulses & Legumes</a>
+                    <a href="#">Vegetables</a>
+                    <a href="#">Fruits</a>
+                    <a href="#">Cash Crops</a>
+                    <a href="#">Oilseeds</a>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <button class="menu-btn" onclick="toggleMenu(this)">
+                    Livestock & Animal Products <i class="fas fa-plus"></i>
+                </button>
+                <div class="submenu-content">
+                    <a href="#">Meat</a>
+                    <a href="#">Dairy</a>
+                    <a href="#">Eggs</a>
+                    <a href="#">By-products</a>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <button class="menu-btn" onclick="toggleMenu(this)">
+                    Other Agricultural Products <i class="fas fa-plus"></i>
+                </button>
+                <div class="submenu-content">
+                    <a href="#">Spices & Herbs</a>
+                    <a href="#">Flowers & Ornamental Plants</a>
+                    <a href="#">Aquaculture</a>
+                    <a href="#">Forestry Products</a>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <button class="menu-btn" onclick="toggleMenu(this)">
+                    Processed & Value-Added Products <i class="fas fa-plus"></i>
+                </button>
+                <div class="submenu-content">
+                    <a href="#">Rice Flour</a>
+                    <a href="#">Wheat Flour</a>
+                    <a href="#">Jute Bags</a>
+                    <a href="#">Cotton Textiles</a>
+                    <a href="#">Pickles</a>
+                    <a href="#">Jams</a>
+                    <a href="#">Juices</a>
+                    <a href="#">Animal Feed</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="filter-section">
+            <h3>Filter Products</h3>
+            <div class="filter-group">
+                <h4>Price Range</h4>
+                <div class="price-inputs">
+                    <input type="number" placeholder="0">
+                    <input type="number" placeholder="10000">
+                </div>
+                <input type="range" min="0" max="10000" class="slider">
+            </div>
+            <div class="filter-group">
+                <label><input type="checkbox"> In Stock Only</label>
+            </div>
+        </div>
+
+    </aside>
+
+    <section class="content">
+        <div class="hero">
+            <h1 class="introduce">Agricultural Marketplace</h1>
+            <p class="green">Flash Sale: 20% Off All Organic Seeds!</p>
+        </div>
+        <!-- Products injected here by main.js -->
+    </section>
+
+</main>
+
+<script src="main.js"></script>
+</body>
+</html>
