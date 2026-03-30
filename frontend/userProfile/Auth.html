@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgriShop – Login / Register</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="auth.css">
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="../index.html" class="logo">Agri<em>Shop</em></a>
+</nav>
+
+<!-- ── AUTH WRAP ── -->
+<div class="auth-wrap">
+  <div class="auth-box">
+
+    <!-- TABS -->
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login"    onclick="switchAuth('login')">🔑 Login</button>
+      <button class="auth-tab"        id="tab-register" onclick="switchAuth('register')">🌱 Register</button>
+    </div>
+
+    <div class="auth-body">
+
+      <!-- ── LOGIN PANEL ── -->
+      <div class="auth-panel active" id="panel-login">
+        <div class="auth-hero">
+          <div class="auth-emoji">🧑‍🌾</div>
+          <div class="auth-title">Welcome back</div>
+          <div class="auth-sub">Sign in to your farmer account</div>
+        </div>
+
+        <div class="alert alert-err" id="login-alert"></div>
+
+        <div class="fg">
+          <label class="fl">Phone / Email</label>
+          <div class="fi-wrap">
+            <span class="fi-icon">📱</span>
+            <input class="fi" id="l-identifier" placeholder="+880 1XXXXXXXXX or email" autocomplete="username">
+          </div>
+          <div class="field-error" id="l-id-err">Please enter your phone or email.</div>
+        </div>
+
+        <div class="fg">
+          <label class="fl">Password</label>
+          <div class="fi-wrap">
+            <span class="fi-icon">🔒</span>
+            <input class="fi" id="l-password" type="password" placeholder="Your password" autocomplete="current-password">
+            <button class="eye-btn" type="button" onclick="togglePw('l-password', this)">👁</button>
+          </div>
+          <div class="field-error" id="l-pw-err">Please enter your password.</div>
+        </div>
+
+        <div style="text-align:right; margin-bottom:16px;">
+          <a href="#" onclick="forgotPassword()" style="font-size:12px; color:var(--muted); text-decoration:none;">Forgot password?</a>
+        </div>
+
+        <button class="btn-submit" onclick="handleLogin()">🔑 Sign In</button>
+
+        <div class="switch-hint">
+          New farmer? <a href="#" onclick="switchAuth('register')">Create an account →</a>
+        </div>
+      </div>
+
+      <!-- ── REGISTER PANEL ── -->
+      <div class="auth-panel" id="panel-register">
+        <div class="auth-hero">
+          <div class="auth-emoji">🌾</div>
+          <div class="auth-title">Join AgriShop</div>
+          <div class="auth-sub">Create your free farmer account</div>
+        </div>
+
+        <div class="alert alert-err" id="reg-alert"></div>
+        <div class="alert alert-ok"  id="reg-ok"></div>
+
+        <div class="fgrid2">
+          <div class="fg">
+            <label class="fl">Full Name</label>
+            <div class="fi-wrap">
+              <span class="fi-icon">👤</span>
+              <input class="fi" id="r-name" placeholder="Your name" autocomplete="name">
+            </div>
+            <div class="field-error" id="r-name-err">Name is required.</div>
+          </div>
+          <div class="fg">
+            <label class="fl">District</label>
+            <div class="fi-wrap">
+              <span class="fi-icon">📍</span>
+              <input class="fi" id="r-district" placeholder="District">
+            </div>
+          </div>
+        </div>
+
+        <div class="fg">
+          <label class="fl">Phone / WhatsApp</label>
+          <div class="fi-wrap">
+            <span class="fi-icon">📱</span>
+            <input class="fi" id="r-phone" placeholder="+880 1XXXXXXXXX" autocomplete="tel">
+          </div>
+          <div class="field-error" id="r-phone-err">Please enter a valid phone number.</div>
+        </div>
+
+        <div class="fg">
+          <label class="fl">Email Address <span style="color:var(--muted);font-size:10px;">(optional)</span></label>
+          <div class="fi-wrap">
+            <span class="fi-icon">✉️</span>
+            <input class="fi" id="r-email" type="email" placeholder="you@email.com" autocomplete="email">
+          </div>
+          <div class="field-error" id="r-email-err">Enter a valid email address.</div>
+        </div>
+
+        <div class="fg">
+          <label class="fl">Farm Type</label>
+          <select class="fi fi-no-icon" id="r-farmtype">
+            <option value="">Select farm type…</option>
+            <option>Mixed Crops</option>
+            <option>Rice Farming</option>
+            <option>Vegetable Farming</option>
+            <option>Fruit Orchard</option>
+            <option>Livestock</option>
+            <option>Aquaculture / Fish Farm</option>
+            <option>Poultry</option>
+            <option>Dairy</option>
+          </select>
+        </div>
+
+        <div class="fg">
+          <label class="fl">Password</label>
+          <div class="fi-wrap">
+            <span class="fi-icon">🔒</span>
+            <input class="fi" id="r-password" type="password" placeholder="Min. 6 characters"
+                   autocomplete="new-password" oninput="checkStrength(this.value)">
+            <button class="eye-btn" type="button" onclick="togglePw('r-password', this)">👁</button>
+          </div>
+          <div class="pw-strength">
+            <div class="pw-seg" id="ps-1"></div>
+            <div class="pw-seg" id="ps-2"></div>
+            <div class="pw-seg" id="ps-3"></div>
+            <div class="pw-seg" id="ps-4"></div>
+          </div>
+          <div class="pw-label" id="pw-label"></div>
+          <div class="field-error" id="r-pw-err">Password must be at least 6 characters.</div>
+        </div>
+
+        <div class="fg">
+          <label class="fl">Confirm Password</label>
+          <div class="fi-wrap">
+            <span class="fi-icon">🔒</span>
+            <input class="fi" id="r-confirm" type="password" placeholder="Repeat password" autocomplete="new-password">
+            <button class="eye-btn" type="button" onclick="togglePw('r-confirm', this)">👁</button>
+          </div>
+          <div class="field-error" id="r-conf-err">Passwords do not match.</div>
+        </div>
+
+        <div class="terms-row">
+          <input type="checkbox" id="r-terms">
+          <label for="r-terms">
+            I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+          </label>
+        </div>
+        <div class="field-error" id="r-terms-err" style="margin-top:-10px; margin-bottom:12px;">
+          You must agree to continue.
+        </div>
+
+        <button class="btn-submit" onclick="handleRegister()">🌱 Create Account</button>
+
+        <div class="switch-hint">
+          Already have an account? <a href="#" onclick="switchAuth('login')">Sign in →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<!-- ── SCRIPTS ── -->
+<!-- auth-utils.js  →  shared helpers (toast, togglePw, clearErrors, showErr, showAlert) -->
+<!-- auth.js        →  page logic   (switchAuth, handleLogin, handleRegister, forgotPassword) -->
+<script src="auth-utils.js"></script>
+<script src="auth.js"></script>
+
+</body>
+</html>
