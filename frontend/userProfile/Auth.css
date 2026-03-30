@@ -1,0 +1,233 @@
+/* ── userProfile/auth.css ── */
+
+:root {
+  --bg:         #0b0f0b;
+  --panel:      #111711;
+  --panel2:     #182118;
+  --border:     #223022;
+  --green:      #3ab557;
+  --green-dim:  #2a8a40;
+  --green-pale: #1a3a1a;
+  --text:       #e0ead0;
+  --muted:      #5a7a5a;
+  --red:        #e05050;
+  --gold:       #c9a84c;
+  --r:          10px;
+}
+
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── NAV ── */
+nav {
+  background: #0d130d;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  height: 60px;
+  gap: 16px;
+}
+.logo {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  text-decoration: none;
+}
+.logo em { color: var(--green); font-style: normal; }
+
+/* ── LAYOUT ── */
+.auth-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* ── BOX ── */
+.auth-box {
+  width: 100%;
+  max-width: 460px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  animation: fadeUp .35s ease both;
+}
+.auth-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green), var(--green-dim), transparent);
+}
+
+/* ── TABS ── */
+.auth-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel2);
+}
+.auth-tab {
+  flex: 1;
+  padding: 16px;
+  background: transparent;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .18s;
+  position: relative;
+}
+.auth-tab.active {
+  color: var(--green);
+  background: var(--panel);
+}
+.auth-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 10%; right: 10%;
+  height: 2px;
+  background: var(--green);
+  border-radius: 2px;
+}
+.auth-tab:hover:not(.active) { color: var(--text); }
+
+/* ── BODY ── */
+.auth-body { padding: 32px; }
+
+/* ── HERO ── */
+.auth-hero  { text-align: center; margin-bottom: 28px; }
+.auth-emoji { font-size: 42px; margin-bottom: 10px; }
+.auth-title { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+.auth-sub   { font-size: 13px; color: var(--muted); }
+
+/* ── PANEL VISIBILITY ── */
+.auth-panel        { display: none; }
+.auth-panel.active { display: block; }
+
+/* ── FORM GRID ── */
+.fgrid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.fg     { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.fl     { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+
+/* ── INPUTS ── */
+.fi-wrap  { position: relative; }
+.fi-icon  { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); font-size: 14px; pointer-events: none; }
+.fi {
+  width: 100%;
+  padding: 11px 14px 11px 40px;
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color .18s;
+}
+.fi:focus         { border-color: var(--green); }
+.fi::placeholder  { color: var(--muted); }
+.fi-no-icon       { padding-left: 14px; }
+
+/* ── PASSWORD TOGGLE ── */
+.eye-btn {
+  position: absolute;
+  right: 12px; top: 50%;
+  transform: translateY(-50%);
+  background: none; border: none;
+  color: var(--muted); cursor: pointer;
+  font-size: 16px; padding: 2px;
+  transition: color .15s;
+}
+.eye-btn:hover { color: var(--green); }
+
+/* ── PASSWORD STRENGTH ── */
+.pw-strength { display: flex; gap: 4px; margin-top: 6px; }
+.pw-seg {
+  flex: 1; height: 3px; border-radius: 2px;
+  background: var(--border);
+  transition: background .2s;
+}
+.pw-label { font-size: 10px; margin-top: 4px; color: var(--muted); }
+
+/* ── ALERTS ── */
+.alert {
+  padding: 11px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: none;
+}
+.alert.show  { display: block; }
+.alert-err   { background: rgba(224,80,80,.12);  border: 1px solid rgba(224,80,80,.3);  color: var(--red); }
+.alert-ok    { background: rgba(58,181,87,.12);  border: 1px solid rgba(58,181,87,.3);  color: var(--green); }
+
+/* ── FIELD ERRORS ── */
+.field-error        { font-size: 11px; color: var(--red); margin-top: 3px; display: none; }
+.field-error.show   { display: block; }
+
+/* ── TERMS ROW ── */
+.terms-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 12px; color: var(--muted); margin-bottom: 16px;
+}
+.terms-row input[type=checkbox] { margin-top: 1px; accent-color: var(--green); flex-shrink: 0; }
+.terms-row a { color: var(--green); }
+
+/* ── SUBMIT BUTTON ── */
+.btn-submit {
+  width: 100%; padding: 13px;
+  background: var(--green); color: #000;
+  border: none; border-radius: 8px;
+  font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700;
+  cursor: pointer;
+  transition: all .18s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-submit:hover  { background: #4dcf6a; transform: translateY(-1px); }
+.btn-submit:active { transform: none; }
+
+/* ── SWITCH HINT ── */
+.switch-hint {
+  text-align: center; margin-top: 20px;
+  font-size: 13px; color: var(--muted);
+}
+.switch-hint a { color: var(--green); text-decoration: none; font-weight: 600; }
+.switch-hint a:hover { text-decoration: underline; }
+
+/* ── TOAST ── */
+#toast {
+  position: fixed; bottom: 26px; right: 26px; z-index: 999;
+  background: var(--green); color: #000;
+  padding: 11px 20px; border-radius: 8px;
+  font-weight: 600; font-size: 13px;
+  opacity: 0; transform: translateY(8px);
+  transition: all .3s; pointer-events: none;
+}
+
+/* ── ANIMATION ── */
+@keyframes fadeUp {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+  .auth-body { padding: 24px 18px; }
+  .fgrid2    { grid-template-columns: 1fr; }
+}
